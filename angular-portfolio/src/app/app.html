@@ -1,4 +1,13 @@
-<app-header></app-header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<!-- Loading Screen -->
+<app-loading 
+  *ngIf="showLoading" 
+  (loadingComplete)="onLoadingComplete()">
+</app-loading>
+
+<!-- Main App Content -->
+<div [style.display]="showLoading ? 'none' : 'block'">
+  <app-header></app-header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  </div>

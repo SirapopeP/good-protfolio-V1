@@ -1,0 +1,344 @@
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.loading-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+// Logo
+.loading-logo {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  animation: logoFadeIn 0.8s ease-out;
+
+  .logo-text {
+    color: var(--primary-text);
+  }
+
+  .logo-accent {
+    color: var(--mint-green);
+    margin-left: 2px;
+  }
+}
+
+// Loading Animation
+.loading-animation {
+  margin-bottom: 2rem;
+  animation: spinnerFadeIn 0.8s ease-out 0.3s both;
+}
+
+.spinner {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.spinner-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+
+  &:nth-child(1) {
+    border-top-color: var(--mint-green);
+    animation-duration: 1.5s;
+  }
+
+  &:nth-child(2) {
+    border-right-color: var(--mint-green-light);
+    animation-duration: 2s;
+    animation-direction: reverse;
+    width: 65%;
+    height: 65%;
+    top: 17.5%;
+    left: 17.5%;
+  }
+
+  &:nth-child(3) {
+    border-bottom-color: var(--mint-green-dark);
+    animation-duration: 2.5s;
+    width: 35%;
+    height: 35%;
+    top: 32.5%;
+    left: 32.5%;
+  }
+}
+
+// Loading Text
+.loading-text {
+  margin-bottom: 2rem;
+  animation: textFadeIn 0.8s ease-out 0.6s both;
+
+  p {
+    color: var(--secondary-text);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    animation: textPulse 2s ease-in-out infinite;
+  }
+}
+
+// Progress Bar
+.progress-container {
+  width: 300px;
+  margin: 0 auto;
+  animation: progressFadeIn 0.8s ease-out 0.9s both;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--tertiary-bg);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--mint-green), var(--mint-green-light));
+  border-radius: 2px;
+  transition: width 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: progressShimmer 1.5s infinite;
+  }
+}
+
+.progress-percentage {
+  color: var(--mint-green);
+  font-size: 0.9rem;
+  font-weight: 600;
+  animation: numberCount 0.3s ease-out;
+}
+
+// Background Pattern
+.bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pattern-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--mint-green);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+
+  &:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: 1.5s;
+  }
+
+  &:nth-child(3) {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 3s;
+  }
+
+  &:nth-child(4) {
+    top: 30%;
+    right: 30%;
+    animation-delay: 4.5s;
+  }
+}
+
+// Animations
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spinnerFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes progressShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes numberCount {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.1;
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+    opacity: 0.3;
+  }
+  66% {
+    transform: translateY(10px) rotate(240deg);
+    opacity: 0.2;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .loading-logo {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .spinner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .progress-container {
+    width: 250px;
+  }
+
+  .loading-text p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-logo {
+    font-size: 2rem;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .progress-container {
+    width: 200px;
+  }
+
+  .loading-text p {
+    font-size: 0.9rem;
+  }
+}

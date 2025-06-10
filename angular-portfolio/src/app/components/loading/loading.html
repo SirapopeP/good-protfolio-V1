@@ -1,0 +1,39 @@
+<div class="loading-container" [class.fade-out]="!isLoading">
+  <div class="loading-content">
+    <!-- Logo/Brand -->
+    <div class="loading-logo">
+      <span class="logo-text">Portfolio</span>
+      <span class="logo-accent">.</span>
+    </div>
+    
+    <!-- Loading Animation -->
+    <div class="loading-animation">
+      <div class="spinner">
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+        <div class="spinner-ring"></div>
+      </div>
+    </div>
+    
+    <!-- Loading Text -->
+    <div class="loading-text">
+      <p>{{ loadingText }}</p>
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="progress"></div>
+      </div>
+      <span class="progress-percentage">{{ progress }}%</span>
+    </div>
+  </div>
+  
+  <!-- Background Pattern -->
+  <div class="bg-pattern">
+    <div class="pattern-dot"></div>
+    <div class="pattern-dot"></div>
+    <div class="pattern-dot"></div>
+    <div class="pattern-dot"></div>
+  </div>
+</div>
