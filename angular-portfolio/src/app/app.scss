@@ -1,0 +1,10 @@
+// Main app styles
+main {
+  min-height: 100vh;
+}
+
+// Ensure proper layout
+:host {
+  display: block;
+  width: 100%;
+}

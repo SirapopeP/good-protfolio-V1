@@ -1,0 +1,203 @@
+<main class="contact">
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Get In Touch</h1>
+        <p>Let's discuss your next project or just say hello!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+          <div class="form-header">
+            <h2>Send me a message</h2>
+            <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+          </div>
+
+          <!-- Success Message -->
+          @if (showSuccess) {
+            <div class="alert alert-success">
+              <span class="alert-icon">✅</span>
+              <div class="alert-content">
+                <strong>Success!</strong> Your message has been sent successfully. I'll get back to you soon!
+              </div>
+            </div>
+          }
+
+          <!-- Error Message -->
+          @if (showError) {
+            <div class="alert alert-error">
+              <span class="alert-icon">❌</span>
+              <div class="alert-content">
+                <strong>Error!</strong> Please fill in all fields with valid information.
+              </div>
+            </div>
+          }
+
+          <form (ngSubmit)="onSubmit()" class="contact-form" #contactFormRef="ngForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name"
+                  [(ngModel)]="contactForm.name"
+                  placeholder="Your full name"
+                  required
+                  #nameInput="ngModel">
+                <div class="form-error" [class.show]="nameInput.invalid && nameInput.touched">
+                  Name is required
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email"
+                  [(ngModel)]="contactForm.email"
+                  placeholder="your.email@example.com"
+                  required
+                  email
+                  #emailInput="ngModel">
+                <div class="form-error" [class.show]="emailInput.invalid && emailInput.touched">
+                  Please enter a valid email address
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject"
+                [(ngModel)]="contactForm.subject"
+                placeholder="What's this about?"
+                required
+                #subjectInput="ngModel">
+              <div class="form-error" [class.show]="subjectInput.invalid && subjectInput.touched">
+                Subject is required
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea 
+                id="message" 
+                name="message"
+                [(ngModel)]="contactForm.message"
+                placeholder="Tell me about your project or just say hello..."
+                rows="6"
+                required
+                #messageInput="ngModel"></textarea>
+              <div class="form-error" [class.show]="messageInput.invalid && messageInput.touched">
+                Message is required
+              </div>
+            </div>
+
+            <button 
+              type="submit" 
+              class="btn btn-primary submit-btn"
+              [disabled]="isSubmitting">
+              @if (isSubmitting) {
+                <span class="spinner"></span>
+                Sending...
+              } @else {
+                <span>📧</span>
+                Send Message
+              }
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info-section">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p>Feel free to reach out through any of these channels:</p>
+
+            <div class="contact-methods">
+              @for (info of contactInfo; track info.title) {
+                <div class="contact-method" (click)="openLink(info.link)">
+                  <div class="method-icon">{{ info.icon }}</div>
+                  <div class="method-content">
+                    <h4>{{ info.title }}</h4>
+                    <p>{{ info.value }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <div class="social-links">
+              <h4>Follow Me</h4>
+              <div class="social-grid">
+                @for (social of socialLinks; track social.name) {
+                  <a 
+                    [href]="social.url" 
+                    target="_blank" 
+                    class="social-link"
+                    [title]="social.name">
+                    <span class="social-icon">{{ social.icon }}</span>
+                    <span class="social-name">{{ social.name }}</span>
+                  </a>
+                }
+              </div>
+            </div>
+
+            <div class="availability">
+              <h4>Availability</h4>
+              <div class="availability-status">
+                <span class="status-dot available"></span>
+                <span>Available for new projects</span>
+              </div>
+              <p class="availability-note">
+                I typically respond within 24 hours during business days.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to common questions</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>What services do you offer?</h4>
+          <p>I specialize in web development, UI/UX design, and mobile app development using modern technologies.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>How long does a typical project take?</h4>
+          <p>Project timelines vary based on complexity, but most websites take 2-6 weeks from start to finish.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Do you work with remote clients?</h4>
+          <p>Absolutely! I work with clients worldwide and use modern collaboration tools to ensure smooth communication.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>What's your development process?</h4>
+          <p>I follow an agile approach with regular updates, milestone reviews, and continuous client feedback.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,158 @@
+<main class="home">
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text animate-on-load">
+          <span class="hero-greeting">Hello, I'm</span>
+          <h1 class="hero-name">
+            <span class="name-text">Your Name</span>
+            <span class="mint-accent">.</span>
+          </h1>
+          <h2 class="hero-title">Full Stack Developer & UI/UX Designer</h2>
+          <p class="hero-description">
+            I create beautiful, functional, and user-centered digital experiences. 
+            With a passion for clean code and innovative design, I bring ideas to life 
+            through modern web technologies.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" (click)="scrollToSection('about')">
+              Learn More
+              <span>👋</span>
+            </button>
+            <a routerLink="/contact" class="btn btn-secondary">
+              Get In Touch
+              <span>📧</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="hero-image animate-on-load">
+          <div class="image-container">
+            <div class="profile-placeholder">
+              <span class="placeholder-icon">📸</span>
+              <p class="placeholder-text">Profile Photo<br>Goes Here</p>
+            </div>
+            <div class="image-bg-shape"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header animate-on-load">
+        <h2>About Me</h2>
+        <p>Passionate about creating exceptional digital experiences</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text animate-on-load">
+          <div class="card">
+            <h3>My Journey</h3>
+            <p>
+              I'm a dedicated developer with over 5 years of experience in creating 
+              modern web applications. I specialize in frontend technologies like Angular, 
+              React, and Vue.js, with a strong foundation in backend development and cloud services.
+            </p>
+            <p>
+              My passion lies in translating complex problems into simple, beautiful, 
+              and intuitive designs. I believe that good design is not just how it looks, 
+              but how it works.
+            </p>
+            <div class="stats">
+              <div class="stat">
+                <h4 class="mint-accent">50+</h4>
+                <p>Projects Completed</p>
+              </div>
+              <div class="stat">
+                <h4 class="mint-accent">5+</h4>
+                <p>Years Experience</p>
+              </div>
+              <div class="stat">
+                <h4 class="mint-accent">100%</h4>
+                <p>Client Satisfaction</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-image animate-on-load">
+          <div class="image-placeholder">
+            <span class="placeholder-icon">🖼️</span>
+            <p class="placeholder-text">Additional Image<br>Placeholder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="section-header animate-on-load">
+        <h2>Skills & Expertise</h2>
+        <p>Technologies and tools I work with</p>
+      </div>
+      
+      <div class="skills-grid">
+        @for (skill of skills; track skill.name) {
+          <div class="skill-card animate-on-load">
+            <div class="skill-icon">{{ skill.icon }}</div>
+            <h3>{{ skill.name }}</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" [style.width.%]="skill.level"></div>
+            </div>
+            <span class="skill-percentage">{{ skill.level }}%</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="experience" id="experience">
+    <div class="container">
+      <div class="section-header animate-on-load">
+        <h2>Experience</h2>
+        <p>My professional journey</p>
+      </div>
+      
+      <div class="timeline">
+        @for (exp of experiences; track exp.title) {
+          <div class="timeline-item animate-on-load">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3>{{ exp.title }}</h3>
+              <h4 class="mint-accent">{{ exp.company }}</h4>
+              <span class="timeline-period">{{ exp.period }}</span>
+              <p>{{ exp.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content animate-on-load">
+        <h2>Let's Work Together</h2>
+        <p>Have a project in mind? Let's create something amazing together!</p>
+        <div class="cta-buttons">
+          <a routerLink="/gallery" class="btn btn-secondary">
+            View My Work
+            <span>🎨</span>
+          </a>
+          <a routerLink="/contact" class="btn btn-primary">
+            Start a Project
+            <span>🚀</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
