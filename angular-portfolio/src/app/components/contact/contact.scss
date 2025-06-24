@@ -1,5 +1,26 @@
+// Variables for consistent spacing and breakpoints
+$breakpoints: (
+  'mobile': 480px,
+  'tablet': 768px,
+  'desktop': 968px,
+  'large': 1200px
+);
+
+// Mixin for responsive design
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
 .contact {
   padding-top: 80px;
+
+  @include respond-to('mobile') {
+    padding-top: 70px;
+  }
 }
 
 // Contact Hero Section
@@ -8,21 +29,31 @@
   background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
   text-align: center;
 
+  @include respond-to('tablet') {
+    padding: 3rem 0;
+  }
+
+  @include respond-to('mobile') {
+    padding: 2rem 0;
+  }
+
   .hero-content {
     h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 1rem;
       background: linear-gradient(135deg, var(--primary-text), var(--mint-green));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      line-height: 1.2;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: var(--secondary-text);
       max-width: 600px;
       margin: 0 auto;
+      padding: 0 1rem;
     }
   }
 }
@@ -31,11 +62,32 @@
 .contact-content {
   padding: 6rem 0;
 
+  @include respond-to('tablet') {
+    padding: 4rem 0;
+  }
+
+  @include respond-to('mobile') {
+    padding: 3rem 0;
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 4rem;
     align-items: start;
+
+    @include respond-to('desktop') {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @include respond-to('tablet') {
+      gap: 2rem;
+    }
+
+    @include respond-to('mobile') {
+      gap: 1.5rem;
+    }
   }
 }
 
@@ -44,13 +96,20 @@
   .form-header {
     margin-bottom: 2rem;
 
+    @include respond-to('mobile') {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
     h2 {
       color: var(--primary-text);
       margin-bottom: 0.5rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
     }
 
     p {
       color: var(--secondary-text);
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
   }
 }
@@ -65,16 +124,29 @@
   margin-bottom: 2rem;
   animation: slideDown 0.3s ease-out;
 
+  @include respond-to('mobile') {
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
   .alert-icon {
     font-size: 1.25rem;
     flex-shrink: 0;
+
+    @include respond-to('mobile') {
+      font-size: 1rem;
+    }
   }
 
   .alert-content {
     strong {
       display: block;
       margin-bottom: 0.25rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
+
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
   }
 
   &.alert-success {
@@ -97,16 +169,27 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-bottom: 1.5rem;
+
+    @include respond-to('tablet') {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
   }
 
   .form-group {
     margin-bottom: 1.5rem;
+
+    @include respond-to('mobile') {
+      margin-bottom: 1rem;
+    }
 
     label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 500;
       color: var(--primary-text);
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
 
     input,
@@ -118,8 +201,15 @@
       background: var(--card-bg);
       color: var(--primary-text);
       font-family: inherit;
+      font-size: clamp(0.9rem, 2vw, 1rem);
       transition: all 0.3s ease;
       resize: vertical;
+      box-sizing: border-box;
+
+      @include respond-to('mobile') {
+        padding: 0.6rem 0.8rem;
+        font-size: 16px; // Prevent zoom on iOS
+      }
 
       &:focus {
         outline: none;
@@ -129,16 +219,21 @@
 
       &::placeholder {
         color: var(--secondary-text);
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
       }
     }
 
     textarea {
       min-height: 120px;
+
+      @include respond-to('mobile') {
+        min-height: 100px;
+      }
     }
 
     .form-error {
       color: #dc2626;
-      font-size: 0.875rem;
+      font-size: clamp(0.75rem, 2vw, 0.875rem);
       margin-top: 0.5rem;
       opacity: 0;
       transform: translateY(-10px);
@@ -154,10 +249,16 @@
   .submit-btn {
     width: 100%;
     padding: 1rem 2rem;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     margin-top: 1rem;
     position: relative;
     overflow: hidden;
+    min-height: 50px;
+
+    @include respond-to('mobile') {
+      padding: 0.8rem 1.5rem;
+      margin-top: 0.5rem;
+    }
 
     &:disabled {
       opacity: 0.7;
@@ -186,15 +287,35 @@
   position: sticky;
   top: 100px;
 
+  @include respond-to('desktop') {
+    position: static;
+    order: -1; // Show contact info first on mobile
+  }
+
+  @include respond-to('tablet') {
+    padding: 1.5rem;
+  }
+
+  @include respond-to('mobile') {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
   .contact-info {
     h3 {
       color: var(--primary-text);
       margin-bottom: 0.5rem;
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
     }
 
     > p {
       color: var(--secondary-text);
       margin-bottom: 2rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+
+      @include respond-to('mobile') {
+        margin-bottom: 1.5rem;
+      }
     }
   }
 }
@@ -202,6 +323,10 @@
 // Contact Methods
 .contact-methods {
   margin-bottom: 3rem;
+
+  @include respond-to('mobile') {
+    margin-bottom: 2rem;
+  }
 
   .contact-method {
     display: flex;
@@ -214,14 +339,24 @@
     transition: all 0.3s ease;
     border: 1px solid transparent;
 
+    @include respond-to('mobile') {
+      padding: 0.75rem;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
     &:hover {
       background: var(--card-bg);
       border-color: var(--mint-green);
       transform: translateX(5px);
+
+      @include respond-to('mobile') {
+        transform: translateX(2px);
+      }
     }
 
     .method-icon {
-      font-size: 1.5rem;
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
       width: 3rem;
       height: 3rem;
       display: flex;
@@ -230,19 +365,29 @@
       background: var(--mint-green);
       border-radius: 50%;
       flex-shrink: 0;
+
+      @include respond-to('mobile') {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
     }
 
     .method-content {
+      flex: 1;
+      min-width: 0; // Prevent text overflow
+
       h4 {
         color: var(--primary-text);
         margin-bottom: 0.25rem;
-        font-size: 1rem;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        word-break: break-word;
       }
 
       p {
         color: var(--secondary-text);
         margin: 0;
-        font-size: 0.9rem;
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+        word-break: break-all;
       }
     }
   }
@@ -252,15 +397,25 @@
 .social-links {
   margin-bottom: 3rem;
 
+  @include respond-to('mobile') {
+    margin-bottom: 2rem;
+  }
+
   h4 {
     color: var(--primary-text);
     margin-bottom: 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
   }
 
   .social-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 0.75rem;
+
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
   }
 
   .social-link {
@@ -274,19 +429,30 @@
     color: var(--primary-text);
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
+    min-height: 44px; // Better touch target
+
+    @include respond-to('mobile') {
+      padding: 0.6rem;
+      gap: 0.6rem;
+    }
 
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 15px var(--shadow);
       border-color: var(--mint-green);
+
+      @include respond-to('mobile') {
+        transform: translateY(-1px);
+      }
     }
 
     .social-icon {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      flex-shrink: 0;
     }
 
     .social-name {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
       font-weight: 500;
     }
   }
@@ -297,6 +463,7 @@
   h4 {
     color: var(--primary-text);
     margin-bottom: 1rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
   }
 
   .availability-status {
@@ -309,10 +476,16 @@
     border-radius: 0.5rem;
     border: 1px solid rgba(34, 197, 94, 0.3);
 
+    @include respond-to('mobile') {
+      padding: 0.6rem;
+      gap: 0.6rem;
+    }
+
     .status-dot {
       width: 0.75rem;
       height: 0.75rem;
       border-radius: 50%;
+      flex-shrink: 0;
       
       &.available {
         background: #22c55e;
@@ -323,14 +496,15 @@
     span:last-child {
       color: #059669;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
   }
 
   .availability-note {
     color: var(--secondary-text);
-    font-size: 0.875rem;
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
     margin: 0;
+    line-height: 1.4;
   }
 }
 
@@ -339,14 +513,28 @@
   padding: 6rem 0;
   background: var(--secondary-bg);
 
+  @include respond-to('tablet') {
+    padding: 4rem 0;
+  }
+
+  @include respond-to('mobile') {
+    padding: 3rem 0;
+  }
+
   .section-header {
     text-align: center;
     margin-bottom: 3rem;
 
+    @include respond-to('mobile') {
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
     h2 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
       position: relative;
       display: inline-block;
+      line-height: 1.2;
 
       &::after {
         content: '';
@@ -358,20 +546,32 @@
         height: 4px;
         background: linear-gradient(90deg, var(--mint-green), var(--mint-green-light));
         border-radius: 2px;
+
+        @include respond-to('mobile') {
+          width: 40px;
+          height: 3px;
+          bottom: -5px;
+        }
       }
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
       max-width: 600px;
       margin: 1rem auto 0;
+      color: var(--secondary-text);
     }
   }
 
   .faq-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
   }
 
   .faq-item {
@@ -383,6 +583,10 @@
     transition: all 0.3s ease;
     position: relative;
 
+    @include respond-to('mobile') {
+      padding: 1.5rem;
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -392,23 +596,33 @@
       height: 4px;
       background: linear-gradient(90deg, var(--mint-green), var(--mint-green-light));
       border-radius: 1rem 1rem 0 0;
+
+      @include respond-to('mobile') {
+        height: 3px;
+      }
     }
 
     &:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px var(--shadow);
+
+      @include respond-to('mobile') {
+        transform: translateY(-2px);
+      }
     }
 
     h4 {
       color: var(--mint-green);
       margin-bottom: 1rem;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      line-height: 1.3;
     }
 
     p {
       color: var(--secondary-text);
       line-height: 1.6;
       margin: 0;
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
   }
 }
@@ -440,81 +654,26 @@
   }
 }
 
-// Responsive Design
-@media (max-width: 968px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .contact-info-section {
-    position: static;
+// Additional mobile optimizations
+@include respond-to('mobile') {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
-@media (max-width: 768px) {
-  .contact-hero {
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
+// Enhanced touch targets for mobile
+@media (hover: none) and (pointer: coarse) {
+  .contact-method,
+  .social-link,
+  .submit-btn {
+    min-height: 44px;
   }
-
-  .contact-content {
-    padding: 4rem 0;
-  }
-
-  .contact-form {
-    .form-row {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-  }
-
-  .social-links .social-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .faq-section {
-    padding: 4rem 0;
-
-    .section-header h2 {
-      font-size: 2rem;
-    }
-
-    .faq-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .contact {
-    padding-top: 70px;
-  }
-
-  .contact-hero {
-    padding: 3rem 0;
-
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-  }
-
-  .contact-info-section {
-    padding: 1.5rem;
-  }
-
-  .contact-methods .contact-method {
-    padding: 0.75rem;
-
-    .method-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      font-size: 1.25rem;
-    }
-  }
-
-  .faq-item {
-    padding: 1.5rem;
+  
+  // Reduce hover effects on touch devices
+  .contact-method:hover,
+  .social-link:hover,
+  .faq-item:hover {
+    transform: none;
   }
 }

@@ -32,19 +32,19 @@ export class ContactComponent {
     {
       icon: '📧',
       title: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com'
+      value: 'sirapope@outlook.co.th',
+      link: 'mailto:sirapope@outlook.co.th'
     },
     {
       icon: '📱',
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: '+66 83 996 6635',
+      link: 'tel:+66 83 996 6635'
     },
     {
       icon: '📍',
       title: 'Location',
-      value: 'Your City, Country',
+      value: 'Bangkok, Thailand',
       link: '#'
     },
     {
@@ -59,7 +59,7 @@ export class ContactComponent {
     {
       name: 'GitHub',
       icon: '💻',
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/SirapopeP',
       color: '#333'
     },
     {
@@ -77,7 +77,7 @@ export class ContactComponent {
     {
       name: 'Instagram',
       icon: '📸',
-      url: 'https://instagram.com/yourusername',
+      url: 'https://www.instagram.com/sena202505/',
       color: '#e4405f'
     }
   ];

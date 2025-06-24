@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/angular-portfolio/browser",
+  "installCommand": "npm install",
+  "framework": "angular",
+  "regions": ["sin1"]
+} 
